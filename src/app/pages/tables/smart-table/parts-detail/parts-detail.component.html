@@ -1,0 +1,52 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+
+    <table style="width: 100%;">
+        <tr>
+            <td>Item ID</td>
+            <td style="width: 10px;">:</td>
+            <td>{{data.val.PartList[0].itemId}}</td>
+        </tr>
+        <tr>
+            <td>Part Number</td>
+            <td style="width: 10px;">:</td>
+            <td>{{data.val.PartList[0].partNum}}</td>
+        </tr>
+        <tr>
+            <td class="align-text-top">Manufacturer</td>
+            <td class="align-text-top" style="width: 10px;">:</td>
+            <td>{{data.val.PartList[0].manufacturer.mfrName}}</td>
+        </tr>
+        <tr>
+            <td class="align-text-top">Description</td>
+            <td class="align-text-top" style="width: 10px;">:</td>
+            <td>{{data.val.PartList[0].desc}}</td>
+        </tr>
+        <tr>
+            <td class="align-text-top">InvOrg</td>
+            <td class="align-text-top" style="width: 10px;">:</td>
+            <td>
+                <table class="table table-borderless table-condensed table-sm" *ngIf="data.val.PartList.length > 0 && data.val.PartList[0].InvOrg.sources.length > 0">
+                    <tr>
+                        <th>Currency</th>
+                        <th>Source</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr *ngFor="let l of data.val.PartList[0].InvOrg.sources">
+                        <td>{{l.currency}}</td>
+                        <td>{{l.sourceCd}}</td>
+                        <td>{{l.displayName}}</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+  </nb-card-body>
+  <nb-card-footer class="text-right">
+    <button nbButton status="basic" (click)="dismiss()">Close</button>
+  </nb-card-footer>
+</nb-card>
